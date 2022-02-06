@@ -10,10 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjeManage">
         <activity
-            android:name=".SplashActivity"
+            android:name=".IntroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ProjeManage.NoActionBar"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ProjeManage.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +27,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

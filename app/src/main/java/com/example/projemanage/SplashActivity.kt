@@ -1,8 +1,10 @@
 package com.example.projemanage
 
+import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.WindowManager
 import android.widget.TextView
 
@@ -21,5 +23,10 @@ class SplashActivity : AppCompatActivity() {
 
 
         tv_app_name.typeface = typeFace
+
+        Handler().postDelayed({
+            startActivity(Intent(this, IntroActivity::class.java))
+            finish()
+        },2500)
     }
 }

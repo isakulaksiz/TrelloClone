@@ -10,14 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjeManage">
         <activity
-            android:name=".IntroActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.ProjeManage.NoActionBar"
+            android:name=".SignupActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".IntroActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.ProjeManage.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme.ProjeManage.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +31,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

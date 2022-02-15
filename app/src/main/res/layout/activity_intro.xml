@@ -20,7 +20,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="202dp"
         android:layout_marginTop="@dimen/intro_screen_image_marginTop"
         android:contentDescription="@string/image_contentDescription"
         android:src="@drawable/ic_task_image" />
@@ -45,7 +45,6 @@
         android:textColor="@color/secondary_text_color"
         android:textSize="@dimen/intro_text_size" />
 
-    <!--TODO (Step 8: Button background files are added in the drawable folder.)-->
     <Button
         android:id="@+id/btn_sign_in_intro"
         android:layout_width="match_parent"

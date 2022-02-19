@@ -6,6 +6,7 @@ import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 
 class SignupActivity : AppCompatActivity() {
+
     var _tbSignUp: Toolbar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +16,7 @@ class SignupActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         _tbSignUp = findViewById<Toolbar>(R.id.toolbar_sign_up_activity)
+
         setupActionBar()
     }
 

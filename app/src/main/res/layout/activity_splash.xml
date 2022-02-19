@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@drawable/ic_splash_background"
-    tools:context=".SplashActivity">
+    tools:context=".activities.SplashActivity">
 
 
     <TextView

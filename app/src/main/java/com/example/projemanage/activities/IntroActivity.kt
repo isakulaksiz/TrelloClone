@@ -1,10 +1,11 @@
-package com.example.projemanage
+package com.example.projemanage.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
+import com.example.projemanage.R
 
 class IntroActivity : AppCompatActivity() {
     lateinit var _btnSignUpIntro: Button
@@ -26,7 +27,7 @@ class IntroActivity : AppCompatActivity() {
         }
 
         _btnSignUpIntro.setOnClickListener{
-            startActivity(Intent(this,SignupActivity::class.java))
+            startActivity(Intent(this, SignupActivity::class.java))
         }
     }
 }

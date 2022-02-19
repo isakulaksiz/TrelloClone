@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@drawable/ic_background"
 android:orientation="vertical"
-tools:context=".SignupActivity">
+tools:context=".activities.SignupActivity">
 
 <!--    Material UI -->
 <androidx.appcompat.widget.Toolbar

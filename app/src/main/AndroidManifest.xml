@@ -10,19 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjeManage">
         <activity
-            android:name=".SigninActivity"
-            android:exported="false"
-            android:theme="@style/Theme.ProjeManage.NoActionBar"/>
+            android:name=".activities.BaseActivity"
+            android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".activities.SigninActivity"
             android:exported="false"
             android:theme="@style/Theme.ProjeManage.NoActionBar" />
         <activity
-            android:name=".IntroActivity"
+            android:name=".activities.SignupActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ProjeManage.NoActionBar" />
+        <activity
+            android:name=".activities.IntroActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ProjeManage.NoActionBar">
@@ -33,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true" />
     </application>
 

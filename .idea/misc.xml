@@ -9,11 +9,13 @@
         <entry key="app/src/main/res/drawable/shape_button_rounded.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/shape_round_file.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/white_border_shape_button_rounded.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/layout/activity_base.xml" value="0.21693840579710144" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.22192028985507245" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22192028985507245" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/dialog_press.xml" value="0.2909208425933888" />
       </map>
     </option>
   </component>

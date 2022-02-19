@@ -10,19 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjeManage">
         <activity
-            android:name=".SignupActivity"
+            android:name=".SigninActivity"
             android:exported="false"
             android:theme="@style/Theme.ProjeManage.NoActionBar"/>
-
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ProjeManage.NoActionBar" />
         <activity
             android:name=".IntroActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-             />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.ProjeManage.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

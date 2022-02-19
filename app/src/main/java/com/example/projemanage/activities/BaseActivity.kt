@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 
 import com.google.firebase.auth.FirebaseAuth
 
-class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
     private lateinit var _progressDialog: Dialog
 
     private var doubleBackToExitPressedOnce = false

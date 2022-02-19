@@ -66,7 +66,7 @@ class SignupActivity : BaseActivity() {
         }
     }
 
-    private fun validateForm(name: String, email: String, password: String): Boolean{
+    fun validateForm(name: String, email: String, password: String): Boolean{
         return when{
             TextUtils.isEmpty(name) ->{
                 showError("Please enter a name")

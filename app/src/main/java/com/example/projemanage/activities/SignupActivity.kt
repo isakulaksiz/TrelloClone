@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.projemanage.R
+import com.example.projemanage.firebase.FireStore
+import com.example.projemanage.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -48,17 +50,12 @@ class SignupActivity : BaseActivity() {
         if(validateForm(name, email, password)){
             showProgressDialog("Please wait")
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                task -> hideProhgressDialog()
+                task ->
                 if (task.isSuccessful) {
                     val firebaseUser: FirebaseUser = task.result.user!!
                     val reqEmail = firebaseUser.email!!
-                    Toast.makeText(
-                        this,
-                        "You have successfully email address $reqEmail",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    FirebaseAuth.getInstance().signOut()
-                    finish()
+                    val user = User(firebaseUser.uid, name, reqEmail)
+                    FireStore().registerUser(this, user)
                 } else {
                     Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }
@@ -83,5 +80,12 @@ class SignupActivity : BaseActivity() {
                 true
             }
         }
+    }
+
+    fun userRegisteredSuccess(){
+        Toast.makeText(this,"You have successfully registered!", Toast.LENGTH_SHORT).show()
+        hideProhgressDialog()
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 }

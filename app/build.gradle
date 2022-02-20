@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation 'com.google.firebase:firebase-firestore:21.4.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

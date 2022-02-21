@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.projemanage.R
+import com.example.projemanage.models.User
 import com.google.firebase.auth.FirebaseAuth
 
 class SigninActivity : BaseActivity() {
@@ -58,6 +59,11 @@ class SigninActivity : BaseActivity() {
         }
     }
 
+    fun signInSuccess(user: User){
+        hideProhgressDialog()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
     private fun validateForm(email: String, password: String): Boolean {
         return when{
             TextUtils.isEmpty(email) ->{

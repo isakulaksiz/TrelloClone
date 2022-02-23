@@ -38,6 +38,7 @@
         </activity>
         <activity
             android:name=".activities.MainActivity"
+            android:theme="@style/Theme.ProjeManage.NoActionBar"
             android:exported="true" />
     </application>
 

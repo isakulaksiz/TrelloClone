@@ -1,6 +1,8 @@
 package com.example.projemanage.firebase
 
+import android.app.Activity
 import android.util.Log
+import com.example.projemanage.activities.MainActivity
 import com.example.projemanage.activities.SigninActivity
 import com.example.projemanage.activities.SignupActivity
 import com.example.projemanage.models.User
@@ -20,14 +22,21 @@ class FireStore {
             .addOnFailureListener { e -> Log.e(activity.javaClass.simpleName, "Error writing document") }
     }
 
-    fun signInUser(activity: SigninActivity){
+    fun signInUser(activity: Activity){
         _fireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
             .addOnSuccessListener {  document ->
                 val loggedInUser = document.toObject(User::class.java)!!
-                if(loggedInUser != null)
-                    activity.signInSuccess(loggedInUser)
+                when(activity){
+                    is SigninActivity -> {
+                        activity.signInSuccess(loggedInUser)
+                    }
+                    is MainActivity -> {
+                        activity.updateNavigationUserDetails(loggedInUser)
+                    }
+                }
+
             }
             .addOnFailureListener { e -> Log.e("Firestore - signInUser","Error should be fireStore class") }
     }

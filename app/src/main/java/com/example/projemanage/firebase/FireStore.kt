@@ -2,7 +2,11 @@ package com.example.projemanage.firebase
 
 import android.app.Activity
 import android.util.Log
+import androidx.viewbinding.ViewBindings
+import com.bumptech.glide.Glide
+import com.example.projemanage.R
 import com.example.projemanage.activities.MainActivity
+import com.example.projemanage.activities.ProfileActivity
 import com.example.projemanage.activities.SigninActivity
 import com.example.projemanage.activities.SignupActivity
 import com.example.projemanage.models.User
@@ -10,6 +14,8 @@ import com.example.projemanage.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import de.hdodenhof.circleimageview.CircleImageView
+import com.example.projemanage.databinding.ActivityProfileBinding as ActivityProfileBinding
 
 class FireStore {
 
@@ -22,7 +28,7 @@ class FireStore {
             .addOnFailureListener { e -> Log.e(activity.javaClass.simpleName, "Error writing document") }
     }
 
-    fun signInUser(activity: Activity){
+    fun loadUserData(activity: Activity){
         _fireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
@@ -34,6 +40,9 @@ class FireStore {
                     }
                     is MainActivity -> {
                         activity.updateNavigationUserDetails(loggedInUser)
+                    }
+                    is ProfileActivity -> {
+                        activity.setUserDataUI(loggedInUser)
                     }
                 }
 

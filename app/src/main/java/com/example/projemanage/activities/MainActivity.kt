@@ -2,22 +2,18 @@ package com.example.projemanage.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.example.projemanage.R
-import com.example.projemanage.databinding.NavHeaderMainBinding
 import com.example.projemanage.firebase.FireStore
 import com.example.projemanage.models.User
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import de.hdodenhof.circleimageview.CircleImageView
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var toolbar_main_activity: Toolbar
@@ -34,7 +30,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         setUpActionBar()
         nav_view.setNavigationItemSelectedListener(this)
-        FireStore().signInUser(this)
+        FireStore().loadUserData(this)
     }
 
     private fun setUpActionBar(){

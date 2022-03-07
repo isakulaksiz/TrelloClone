@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.WindowManager
 import android.widget.TextView
 import com.example.projemanage.R
@@ -26,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
 
         tv_app_name.typeface = typeFace
 
-        Handler().postDelayed({
+        Handler(Looper.myLooper()!!).postDelayed({
             val currentUserId = FireStore().getCurrentUserId()
             if(currentUserId.isNotEmpty()){
                 startActivity(Intent(this, MainActivity::class.java))

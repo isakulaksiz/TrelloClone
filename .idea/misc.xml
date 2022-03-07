@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.28703703703703703" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_action_navigation_menu.xml" value="0.155" />
         <entry key="app/src/main/res/drawable/ic_black_color_back_24dp.xml" value="0.11666666666666667" />
+        <entry key="app/src/main/res/drawable/ic_nav_sign_out.xml" value="0.155" />
+        <entry key="app/src/main/res/drawable/ic_nav_user.xml" value="0.155" />
         <entry key="app/src/main/res/drawable/nav_header_main_background.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/shape_button_rounded.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/shape_round_file.xml" value="0.3260416666666667" />
@@ -19,12 +23,16 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.1609375" />
         <entry key="app/src/main/res/layout/dialog_press.xml" value="0.2909208425933888" />
+        <entry key="app/src/main/res/layout/main_content.xml" value="0.2463768115942029" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.25" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.1609375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -2,6 +2,7 @@ package com.example.projemanage.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
@@ -44,9 +45,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun toggleDrawer(){
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
+            Log.e("if", "isa")
             drawer_layout.closeDrawer(GravityCompat.START)
         }else{
             drawer_layout.openDrawer(GravityCompat.START)
+            Log.e("else","isa")
         }
     }
 
@@ -75,20 +78,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
-
-    /*
-    fun updateNavigationUserDetails(user: User) {
-        Glide
-            .with(this)
-            .load(user.image)
-            .centerCrop()
-            .placeholder(R.drawable.ic_user_place_holder)
-            .into(binding.navViewUserImage)
-        binding.tvUsername.text= user.name
-        Log.e("tv_username.text", tv_username.text.toString())
-        Log.e("user.image", user.image)
-    }
-    */
 
     fun updateNavigationUserDetails(user: User) {
         val headerView = nav_view.getHeaderView(0)

@@ -1,8 +1,12 @@
 package com.example.projemanage.activities
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.Toolbar
@@ -21,6 +25,8 @@ class ProfileActivity : BaseActivity() {
     private lateinit var et_name: AppCompatEditText
     private lateinit var et_email: AppCompatEditText
     private lateinit var et_mobile: AppCompatEditText
+    private var _selectedFileUri: Uri? = null
+
 
     companion object{
         private const val READ_STORAGE_PERMISSION_CODE = 1
@@ -42,7 +48,7 @@ class ProfileActivity : BaseActivity() {
 
         iv_user_image.setOnClickListener {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-
+                showImageChooser()
             }else{
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), READ_STORAGE_PERMISSION_CODE)
             }
@@ -57,12 +63,32 @@ class ProfileActivity : BaseActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == READ_STORAGE_PERMISSION_CODE){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                // TODO add func display choose
+                showImageChooser()
             }else{
                 Toast.makeText(this, "u just need the permission", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+    private fun showImageChooser(){
+        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(gallery, PICK_IMAGE_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode == PICK_IMAGE_REQUEST_CODE && data!!.data != null){
+            _selectedFileUri = data.data // data return to uri
+
+            Glide
+                .with(this@ProfileActivity)
+                .load(_selectedFileUri)
+                .centerCrop()
+                .placeholder(R.drawable.ic_user_place_holder)
+                .into(iv_user_image)
+        }
+    }
+
     private fun setUpActionBar(){
         setSupportActionBar(toolbar_profile_activity)
         val actionBar = supportActionBar

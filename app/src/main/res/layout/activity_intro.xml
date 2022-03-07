@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/intro_screen_title_text_marginTop"
-        android:text="@string/app_name"
+        android:text="Open Project"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/intro_screen_title_text_size"
         android:textStyle="bold" />
@@ -23,7 +23,7 @@
         android:layout_height="202dp"
         android:layout_marginTop="@dimen/intro_screen_image_marginTop"
         android:contentDescription="@string/image_contentDescription"
-        android:src="@drawable/ic_task_image" />
+        android:src="@drawable/openproject" />
 
     <TextView
         android:layout_width="wrap_content"

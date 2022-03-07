@@ -1,13 +1,19 @@
 package com.example.projemanage.activities
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.projemanage.R
 import com.example.projemanage.firebase.FireStore
 import com.example.projemanage.models.User
 import de.hdodenhof.circleimageview.CircleImageView
+
 
 class ProfileActivity : BaseActivity() {
     private lateinit var toolbar_profile_activity: Toolbar
@@ -15,6 +21,11 @@ class ProfileActivity : BaseActivity() {
     private lateinit var et_name: AppCompatEditText
     private lateinit var et_email: AppCompatEditText
     private lateinit var et_mobile: AppCompatEditText
+
+    companion object{
+        private const val READ_STORAGE_PERMISSION_CODE = 1
+        private const val PICK_IMAGE_REQUEST_CODE = 2
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +39,30 @@ class ProfileActivity : BaseActivity() {
 
         setUpActionBar()
         FireStore().loadUserData(this)
+
+        iv_user_image.setOnClickListener {
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+
+            }else{
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), READ_STORAGE_PERMISSION_CODE)
+            }
+        }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == READ_STORAGE_PERMISSION_CODE){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                // TODO add func display choose
+            }else{
+                Toast.makeText(this, "u just need the permission", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
     private fun setUpActionBar(){
         setSupportActionBar(toolbar_profile_activity)
         val actionBar = supportActionBar

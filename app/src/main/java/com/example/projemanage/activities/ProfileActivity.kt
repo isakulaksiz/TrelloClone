@@ -7,6 +7,9 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.webkit.MimeTypeMap
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.Toolbar
@@ -16,6 +19,8 @@ import com.bumptech.glide.Glide
 import com.example.projemanage.R
 import com.example.projemanage.firebase.FireStore
 import com.example.projemanage.models.User
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -25,8 +30,9 @@ class ProfileActivity : BaseActivity() {
     private lateinit var et_name: AppCompatEditText
     private lateinit var et_email: AppCompatEditText
     private lateinit var et_mobile: AppCompatEditText
+    private lateinit var btn_update: Button
     private var _selectedFileUri: Uri? = null
-
+    private var _profileImageUri: String = ""
 
     companion object{
         private const val READ_STORAGE_PERMISSION_CODE = 1
@@ -41,7 +47,7 @@ class ProfileActivity : BaseActivity() {
         et_name = findViewById(R.id.et_name)
         et_email = findViewById(R.id.et_email)
         et_mobile = findViewById(R.id.et_mobile)
-
+        btn_update = findViewById(R.id.btn_update)
 
         setUpActionBar()
         FireStore().loadUserData(this)
@@ -53,6 +59,12 @@ class ProfileActivity : BaseActivity() {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), READ_STORAGE_PERMISSION_CODE)
             }
         }
+
+        btn_update.setOnClickListener {
+            if(_selectedFileUri != null)
+                uploadUserImage()
+        }
+
     }
 
     override fun onRequestPermissionsResult(
@@ -87,6 +99,36 @@ class ProfileActivity : BaseActivity() {
                 .placeholder(R.drawable.ic_user_place_holder)
                 .into(iv_user_image)
         }
+    }
+
+    private fun uploadUserImage(){
+        showProgressDialog(resources.getString(R.string.please_wait))
+        if(_selectedFileUri != null){
+            val storageRef:StorageReference = FirebaseStorage.getInstance().reference.child(
+                "USER_IMAGE" + System.currentTimeMillis() +
+                "."+ getImageFromUri(_selectedFileUri))
+            storageRef.putFile(_selectedFileUri!!).addOnSuccessListener {
+                e ->
+                run {
+                    Log.i("Firebase Image URL", e.metadata!!.reference!!.downloadUrl.toString())
+                    e.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uri ->
+                        Log.i("Downloadable Image Uri", uri.toString())
+                        _profileImageUri = uri.toString()
+
+                        hideProhgressDialog()
+                    }
+                }
+            }.addOnFailureListener{
+                e ->
+                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                hideProhgressDialog()
+            }
+        }
+
+    }
+
+    private fun getImageFromUri(uri: Uri?): String? {
+        return MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri!!))
     }
 
     private fun setUpActionBar(){

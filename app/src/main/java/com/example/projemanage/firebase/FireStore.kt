@@ -2,6 +2,7 @@ package com.example.projemanage.firebase
 
 import android.app.Activity
 import android.util.Log
+import android.widget.Toast
 import androidx.viewbinding.ViewBindings
 import com.bumptech.glide.Glide
 import com.example.projemanage.R
@@ -48,6 +49,20 @@ class FireStore {
 
             }
             .addOnFailureListener { e -> Log.e("Firestore - signInUser","Error should be fireStore class") }
+    }
+
+    fun updateProfileData(activity:ProfileActivity, userHashMap: HashMap<String, Any>){
+        _fireStore.collection(Constants.USERS)
+            .document(getCurrentUserId())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "profile data updated successfully")
+                Toast.makeText(activity, "profile data updated successfully", Toast.LENGTH_SHORT).show()
+                activity.profileUpdateSuccess()
+            }.addOnFailureListener { e ->
+                Log.i(activity.javaClass.simpleName, "ERR profile data updated")
+                Toast.makeText(activity, "ERR profile data updated", Toast.LENGTH_SHORT).show()
+            }
     }
 
     fun getCurrentUserId(): String{

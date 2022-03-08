@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.example.projemanage.R
 import com.example.projemanage.firebase.FireStore
 import com.example.projemanage.models.User
+import com.example.projemanage.utils.Constants
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import de.hdodenhof.circleimageview.CircleImageView
@@ -33,6 +34,7 @@ class ProfileActivity : BaseActivity() {
     private lateinit var btn_update: Button
     private var _selectedFileUri: Uri? = null
     private var _profileImageUri: String = ""
+    private var _userDetails = User()
 
     companion object{
         private const val READ_STORAGE_PERMISSION_CODE = 1
@@ -63,6 +65,11 @@ class ProfileActivity : BaseActivity() {
         btn_update.setOnClickListener {
             if(_selectedFileUri != null)
                 uploadUserImage()
+            else{
+                showProgressDialog(resources.getString(R.string.please_wait))
+
+                updateUserProfileData()
+            }
         }
 
     }
@@ -115,7 +122,7 @@ class ProfileActivity : BaseActivity() {
                         Log.i("Downloadable Image Uri", uri.toString())
                         _profileImageUri = uri.toString()
 
-                        hideProhgressDialog()
+                        updateUserProfileData()
                     }
                 }
             }.addOnFailureListener{
@@ -131,6 +138,30 @@ class ProfileActivity : BaseActivity() {
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri!!))
     }
 
+    fun updateUserProfileData(){
+        val userHashMap  = HashMap<String, Any>()
+
+        var isChanged:Boolean = false
+        if (_profileImageUri.isNotEmpty() && _profileImageUri != _userDetails.image) {
+            userHashMap[Constants.IMAGE] = _profileImageUri
+            isChanged = true
+        }
+        else if(et_name.text.toString() != _userDetails.name){
+            userHashMap[Constants.NAME] = et_name.text.toString()
+            isChanged = true
+        }else if(et_mobile.text.toString() != _userDetails.mobile.toString()){
+            userHashMap[Constants.MOBILE] = et_mobile.text.toString()
+            isChanged = true
+        }
+        if(isChanged)
+            FireStore().updateProfileData(this, userHashMap)
+    }
+
+    fun profileUpdateSuccess(){
+        hideProhgressDialog()
+        finish()
+    }
+
     private fun setUpActionBar(){
         setSupportActionBar(toolbar_profile_activity)
         val actionBar = supportActionBar
@@ -144,6 +175,8 @@ class ProfileActivity : BaseActivity() {
     }
 
     fun setUserDataUI(user: User){
+        //_userDetails = user as User.Companion
+        _userDetails = user
         Glide
             .with(this@ProfileActivity)
             .load(user.image)

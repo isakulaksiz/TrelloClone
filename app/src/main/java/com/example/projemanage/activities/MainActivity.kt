@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
-import com.example.projemanage.CreateBoardActivity
 import com.example.projemanage.R
 import com.example.projemanage.firebase.FireStore
 import com.example.projemanage.models.User

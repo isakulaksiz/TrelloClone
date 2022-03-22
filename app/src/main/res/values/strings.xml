@@ -25,4 +25,8 @@
 
     <string name="nav_my_profile">My Profile</string>
     <string name="nav_sign_out">Sign out</string>
+
+    <string name="create_board_title">Create Board</string>
+    <string name="create">CREATE</string>
+    <string name="board_name">Board Name</string>
 </resources>

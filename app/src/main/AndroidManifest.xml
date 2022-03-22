@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjeManage">
         <activity
+            android:name=".CreateBoardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ProjeManage.NoActionBar"/>
+        <activity
             android:name=".activities.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.ProjeManage.NoActionBar" />

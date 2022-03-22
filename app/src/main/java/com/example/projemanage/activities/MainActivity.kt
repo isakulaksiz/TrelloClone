@@ -11,9 +11,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
+import com.example.projemanage.CreateBoardActivity
 import com.example.projemanage.R
 import com.example.projemanage.firebase.FireStore
 import com.example.projemanage.models.User
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,6 +23,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var toolbar_main_activity: Toolbar
     private lateinit var drawer_layout: DrawerLayout
     private lateinit var nav_view: NavigationView
+    private lateinit var fab_create_board: FloatingActionButton
 
     companion object{
         const val MY_PROFILE_REQUEST_CODE:Int = 11
@@ -33,10 +36,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         toolbar_main_activity = findViewById<Toolbar>(R.id.toolbar_main_activity)
         drawer_layout = findViewById<DrawerLayout>(R.id.drawer_layout)
         nav_view = findViewById<NavigationView>(R.id.nav_view)
+        fab_create_board = findViewById(R.id.fab_create_board)
 
         setUpActionBar()
         nav_view.setNavigationItemSelectedListener(this)
         FireStore().loadUserData(this)
+
+        fab_create_board.setOnClickListener{
+            startActivity(Intent(this, CreateBoardActivity::class.java))
+        }
     }
 
     private fun setUpActionBar(){
@@ -50,11 +58,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun toggleDrawer(){
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
-            Log.e("if", "isa")
             drawer_layout.closeDrawer(GravityCompat.START)
         }else{
             drawer_layout.openDrawer(GravityCompat.START)
-            Log.e("else","isa")
         }
     }
 

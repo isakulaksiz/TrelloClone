@@ -1,5 +1,6 @@
 package com.example.projemanage.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var toolbar_main_activity: Toolbar
     private lateinit var drawer_layout: DrawerLayout
     private lateinit var nav_view: NavigationView
+
+    companion object{
+        const val MY_PROFILE_REQUEST_CODE:Int = 11
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,10 +66,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE){
+            FireStore().loadUserData(this)
+        }else{
+            Log.e("ERR", "Cancelled!")
+        }
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_my_profile -> {
-                startActivity(Intent(this, ProfileActivity::class.java))
+                startActivityForResult(Intent(this, ProfileActivity::class.java), MY_PROFILE_REQUEST_CODE)
             }
             R.id.nav_sign_out -> {
                 FirebaseAuth.getInstance().signOut()

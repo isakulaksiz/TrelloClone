@@ -13,13 +13,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.projemanage.R
+import com.example.projemanage.models.Board
 import com.example.projemanage.utils.Constants
 import de.hdodenhof.circleimageview.CircleImageView
 
-class CreateBoardActivity : AppCompatActivity() {
+class CreateBoardActivity : BaseActivity() {
     private lateinit var toolbar_create_board_activity: Toolbar
     private var _selectedFileUri: Uri? = null
     private lateinit var iv_board_image: CircleImageView
+
+    private lateinit var _userName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_board)
@@ -35,6 +38,15 @@ class CreateBoardActivity : AppCompatActivity() {
             }
         }
         setUpActionBar()
+        if(intent.hasExtra(Constants.NAME)){
+            _userName = intent.getStringExtra(Constants.NAME).toString()
+        }
+    }
+
+
+    fun boardCreatedSuccessfully(){
+        hideProhgressDialog()
+        finish()
     }
 
     private fun setUpActionBar(){

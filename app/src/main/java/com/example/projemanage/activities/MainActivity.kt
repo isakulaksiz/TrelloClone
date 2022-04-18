@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.projemanage.R
 import com.example.projemanage.firebase.FireStore
 import com.example.projemanage.models.User
+import com.example.projemanage.utils.Constants
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var nav_view: NavigationView
     private lateinit var fab_create_board: FloatingActionButton
 
+    private lateinit var _userName: String
     companion object{
         const val MY_PROFILE_REQUEST_CODE:Int = 11
     }
@@ -42,7 +44,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         FireStore().loadUserData(this)
 
         fab_create_board.setOnClickListener{
-            startActivity(Intent(this, CreateBoardActivity::class.java))
+            val intent = Intent(this, CreateBoardActivity::class.java)
+            intent.putExtra(Constants.NAME, _userName)
+            startActivity(intent)
+            //startActivity(Intent(this, CreateBoardActivity::class.java))
         }
     }
 
@@ -100,7 +105,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     fun updateNavigationUserDetails(user: User) {
         val headerView = nav_view.getHeaderView(0)
-
+        _userName = user.name
         val navUserImage = headerView.findViewById<ImageView>(R.id.nav_view_user_image)
 
         Glide

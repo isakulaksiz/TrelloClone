@@ -6,10 +6,8 @@ import android.widget.Toast
 import androidx.viewbinding.ViewBindings
 import com.bumptech.glide.Glide
 import com.example.projemanage.R
-import com.example.projemanage.activities.MainActivity
-import com.example.projemanage.activities.ProfileActivity
-import com.example.projemanage.activities.SigninActivity
-import com.example.projemanage.activities.SignupActivity
+import com.example.projemanage.activities.*
+import com.example.projemanage.models.Board
 import com.example.projemanage.models.User
 import com.example.projemanage.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +25,21 @@ class FireStore {
             .document(getCurrentUserId()).set(userInfo, SetOptions.merge())
             .addOnSuccessListener { activity.userRegisteredSuccess() }
             .addOnFailureListener { e -> Log.e(activity.javaClass.simpleName, "Error writing document") }
+    }
+
+    fun createBoard(activity: CreateBoardActivity, board: Board){
+        _fireStore.collection(Constants.BOARDS)
+            .document()
+            .set(board, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "Board created sucessfully")
+                Toast.makeText(activity,"Board created successfully!", Toast.LENGTH_SHORT).show()
+                activity.boardCreatedSuccessfully()
+            }.addOnFailureListener{
+                e ->
+                    activity.hideProhgressDialog()
+                Log.e(activity.javaClass.simpleName, "ERR", e)
+            }
     }
 
     fun loadUserData(activity: Activity){

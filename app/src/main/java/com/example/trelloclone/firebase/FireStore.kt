@@ -1,20 +1,15 @@
-package com.example.projemanage.firebase
+package com.example.trelloclone.firebase
 
 import android.app.Activity
 import android.util.Log
 import android.widget.Toast
-import androidx.viewbinding.ViewBindings
-import com.bumptech.glide.Glide
-import com.example.projemanage.R
-import com.example.projemanage.activities.*
-import com.example.projemanage.models.Board
-import com.example.projemanage.models.User
-import com.example.projemanage.utils.Constants
+import com.example.trelloclone.activities.*
+import com.example.trelloclone.models.Board
+import com.example.trelloclone.models.User
+import com.example.trelloclone.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import de.hdodenhof.circleimageview.CircleImageView
-import com.example.projemanage.databinding.ActivityProfileBinding as ActivityProfileBinding
 
 class FireStore {
 

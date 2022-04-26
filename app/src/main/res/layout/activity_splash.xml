@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Open Project"
+        android:text="Trello"
         android:textColor="@android:color/white"
         android:textSize="@dimen/splash_screen_title_text_size"/>
 </LinearLayout>

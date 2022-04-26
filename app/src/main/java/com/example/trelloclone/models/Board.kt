@@ -1,4 +1,4 @@
-package com.example.projemanage.models
+package com.example.trelloclone.models
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -1,4 +1,4 @@
-package com.example.projemanage.activities
+package com.example.trelloclone.activities
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.example.projemanage.R
+import com.example.trelloclone.R
 import com.google.android.material.snackbar.Snackbar
 
 import com.google.firebase.auth.FirebaseAuth

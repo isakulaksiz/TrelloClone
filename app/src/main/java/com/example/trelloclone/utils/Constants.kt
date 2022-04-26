@@ -1,11 +1,10 @@
-package com.example.projemanage.utils
+package com.example.trelloclone.utils
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
-import com.example.projemanage.activities.ProfileActivity
 
 object Constants{
     const val USERS: String = "users"

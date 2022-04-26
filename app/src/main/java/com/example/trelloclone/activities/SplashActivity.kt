@@ -1,4 +1,4 @@
-package com.example.projemanage.activities
+package com.example.trelloclone.activities
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -8,8 +8,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import android.widget.TextView
-import com.example.projemanage.R
-import com.example.projemanage.firebase.FireStore
+import com.example.trelloclone.R
+import com.example.trelloclone.firebase.FireStore
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

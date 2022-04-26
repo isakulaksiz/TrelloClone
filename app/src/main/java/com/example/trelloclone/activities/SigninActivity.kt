@@ -1,8 +1,7 @@
-package com.example.projemanage.activities
+package com.example.trelloclone.activities
 
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -11,8 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import com.example.projemanage.R
-import com.example.projemanage.models.User
+import com.example.trelloclone.R
+import com.example.trelloclone.models.User
 import com.google.firebase.auth.FirebaseAuth
 
 class SigninActivity : BaseActivity() {

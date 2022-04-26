@@ -1,4 +1,4 @@
-package com.example.projemanage.activities
+package com.example.trelloclone.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -11,10 +11,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
-import com.example.projemanage.R
-import com.example.projemanage.firebase.FireStore
-import com.example.projemanage.models.User
-import com.example.projemanage.utils.Constants
+import com.example.trelloclone.R
+import com.example.trelloclone.firebase.FireStore
+import com.example.trelloclone.models.User
+import com.example.trelloclone.utils.Constants
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth

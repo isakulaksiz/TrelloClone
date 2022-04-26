@@ -1,4 +1,4 @@
-package com.example.projemanage
+package com.example.trelloclone
 
 import org.junit.Test
 

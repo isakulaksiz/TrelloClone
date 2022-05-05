@@ -8,13 +8,15 @@ data class Board (
     val image: String = "",
     val createdBy: String  = "",
     // birden fazla kişiye atanabilir.
-    val assignedTo: ArrayList<String> = ArrayList()
+    val assignedTo: ArrayList<String> = ArrayList(),
+    var documentId: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.createStringArrayList()!!
+        parcel.createStringArrayList()!!,
+        parcel.readString()!!
     ) {
     }
 
@@ -23,6 +25,7 @@ data class Board (
         parcel.writeString(image)
         parcel.writeString(createdBy)
         parcel.writeString(assignedTo.toString())
+        parcel.writeString(documentId)
     }
 
     override fun describeContents(): Int {

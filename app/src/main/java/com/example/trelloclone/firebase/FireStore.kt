@@ -37,7 +37,7 @@ class FireStore {
             }
     }
 
-    fun loadUserData(activity: Activity){
+    fun loadUserData(activity: Activity, readBoardsList: Boolean = false){
         _fireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
@@ -48,7 +48,7 @@ class FireStore {
                         activity.signInSuccess(loggedInUser)
                     }
                     is MainActivity -> {
-                        activity.updateNavigationUserDetails(loggedInUser)
+                        activity.updateNavigationUserDetails(loggedInUser, readBoardsList)
                     }
                     is ProfileActivity -> {
                         activity.setUserDataUI(loggedInUser)
@@ -57,6 +57,28 @@ class FireStore {
 
             }
             .addOnFailureListener { e -> Log.e("Firestore - signInUser","Error should be fireStore class") }
+    }
+
+    fun getBoardsList(activity: MainActivity){
+        _fireStore.collection(Constants.BOARDS)
+            .whereArrayContains(Constants.ASSIGNED_TO, getCurrentUserId())
+            .get()
+            .addOnSuccessListener {
+                document ->
+                    Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val boardList: ArrayList<Board> = ArrayList()
+                for(i in document.documents){
+                    val board = i.toObject(Board::class.java)!!
+                    board.documentId = i.id
+                    boardList.add(board)
+                }
+                activity.populateBoardsListToUI(boardList)
+            }.addOnFailureListener{
+                e ->
+                    activity.hideProhgressDialog()
+                Log.i(activity.javaClass.simpleName, "ERROR while creating !", e)
+
+            }
     }
 
     fun updateProfileData(activity:ProfileActivity, userHashMap: HashMap<String, Any>){

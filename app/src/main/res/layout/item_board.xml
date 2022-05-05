@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:padding="@dimen/item_board_content_padding">
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ic_board_image"
+            android:id="@+id/iv_board_image"
             android:layout_width="@dimen/item_board_image_size"
             android:layout_height="@dimen/item_board_image_size"
             android:contentDescription="image"
